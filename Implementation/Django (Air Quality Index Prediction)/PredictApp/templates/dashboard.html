@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'PredictApp/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'PredictApp/style.css' %}">
+    <script src="{% static 'PredictApp/myjs.js' %}"></script>
+    <title>AQI Prediction - Welcome Dashboard</title>
+</head>
+<body>
+    
+    <!-- Row 1 -->
+    <div>
+        <header class="row header1">
+            <div class="left-align">
+                <img class="banner" src="{% static 'PredictApp/images/banner.png' %}" alt="Image Placeholder">
+            </div>
+            <div class="right-align">
+                <a id="signinButton" href="{% url 'logout' %}">Log Out</a>
+            </div>
+        </header>
+    </div>
+    <div class="grid-container">   
+       <aside class="sidenav">
+         <ul class="sidenav__list">
+           <li class="sidenav__list-item" onclick="modelaccuracy()">Model Accuracy</li>
+           <li class="sidenav__list-item" onclick="annclassreport()">ANN Classification Report</li>
+           <li class="sidenav__list-item" onclick="anntclasslevel()">ANN Classifier level</li>
+           <li class="sidenav__list-item" onclick="annconfmatrix()">ANN Confusion Matrix</li>
+           <li class="sidenav__list-item" onclick="annroccurve()">ANN ROC Curver</li>
+           <li class="sidenav__list-item" onclick="anntrainvalaccuracy()">ANN Training and validation accuracy</li>
+           <li class="sidenav__list-item" onclick="anntrainvalloss()">ANN Training and validation Loss</li>
+           <li class="sidenav__list-item" onclick="lstmloss()">LSTM Loss</li>
+         </ul>
+       </aside>
+     
+       <main class="main">
+          <div class="main-welcome">Welcome Admin</div>
+          <div class="main-header" id="mainHeaderContent">
+            <div class="main-header_image"><center><img src="" id="mainHeaderImage"></center></div>                  
+         </div>
+       </main>
+    </div>
+       <footer class="row footer1">
+        <p>Copyright &copy; 2024 AQI Prediction. All rights reserved.</p>
+    </footer>   
+
+    <script>
+        function modelaccuracy() {
+            document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ModelAccuracy.jpg' %}";
+        }
+        function annclassreport() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNClassificationReport.jpg' %}";
+        }
+        function anntclasslevel() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNClassifierlevel.jpg' %}";
+        }
+        function annconfmatrix() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNConfusionMatrix.jpg' %}";
+        }
+        function annroccurve() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNROCCurve.jpg' %}";
+        }
+        function anntrainvalaccuracy() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNTrainingValidationAccuracy.jpg' %}";
+        }
+        function anntrainvalloss() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/ANNTraining&ValidationLoss.jpg' %}";
+        }
+        function lstmloss() {
+          document.getElementById("mainHeaderImage").src = "{% static 'PredictApp/images/LSTMLoss.jpg' %}";
+        }
+    </script>
+</body>
+</html>

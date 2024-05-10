@@ -1,0 +1,242 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Styles for the header */
+.header1 {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: linear-gradient(to right, #53fff9, #0b142e);
+    z-index: 1000; /* Ensure the header is above other elements */
+  }
+
+/* Add padding to content container to prevent it from being obscured by the fixed header */
+.container {
+    padding-top: 150px; /* Adjust as needed based on the height of your header */
+}
+
+.banner {
+    max-height: 120px; /* Adjust height as needed */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+/* Table Styles */
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.responsive-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    background-color: #53fff9;
+}
+
+.responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Color rows on hover */
+.responsive-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Make table cells stack on top of each other on small screens */
+@media only screen and (max-width: 600px) {
+    .responsive-table th, .responsive-table td {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Styles for left-align and right-align classes */
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+    margin-right: 50px; /* Add margin to the right side */
+    color: white;
+}
+
+/* Center align for select date range row */
+.center-align {
+    justify-content: center;
+}
+/* Add spacing between date range components */
+.row.center-align label,
+.row.center-align input,
+.row.center-align button {
+    margin: 0 10px; /* Adjust as needed */
+}
+
+/* Styling for predict button */
+#predictButton {
+    padding: 10px 20px;
+background-color: #FFCE08;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#predictButton:hover {
+    background-color: #53fff9;
+}
+
+/* Styling for signin button */
+#signinButton {
+    padding: 10px 20px;
+    background-color: #FFCE08;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#signinButton:hover {
+    background-color: #53fff9;
+}
+
+
+/* Styling for report button */
+#reportButton {
+    padding: 10px 20px;
+    background-color: #FFCE08;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#reportButton:hover {
+    background-color: #53fff9;
+}
+
+/* Styling for report button */
+#submitButton {
+    padding: 10px 20px;
+    background-color: #FFCE08;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#submitButton:hover {
+    background-color: #53fff9;
+}
+
+/* Styling for date input fields */
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Define colors for classifications */
+.good {
+    background-color: #7FFF00; /* Green */
+}
+
+.satisfactory {
+    background-color: #FFFF00; /* Yellow */
+}
+
+.moderate {
+    background-color: #FFA500; /* Orange */
+}
+
+.poor {
+    background-color: #FF6347; /* Tomato */
+}
+
+.very-poor {
+    background-color: #FF0000; /* Red */
+}
+
+.severe {
+    background-color: #8B0000; /* Dark Red */
+}
+
+.img {
+    max-width: 50px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.aqiimg {
+    max-width: 100%; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.footer1 {
+    bottom: 0;
+    width: 100%;
+    background-image: linear-gradient(to right, #53fff9, #0b142e);
+    padding: 10px;
+}
+
+  /* Additional CSS for Sign In Form */
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-container #submitButton {
+    background-color: #FFCE08;
+    color: #000000;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-container #submitButton:hover {
+    background-color: #53fff9;
+}

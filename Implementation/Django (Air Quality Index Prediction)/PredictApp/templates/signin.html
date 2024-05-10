@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'PredictApp/style.css' %}">
+    <title>AQI Prediction-Sign In</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Row 1 -->
+        <div>
+            <header class="row header1">
+                <div class="left-align">
+                    <img class="banner" src="{% static 'PredictApp/images/banner.png' %}" alt="Image Placeholder">
+                </div>
+                <div class="right-align">
+                    <a id="signinButton" href="{% url 'index' %}">Home</a>
+                </div>
+            </header>
+        </div>
+        <div><h1></h1></div>
+        <!-- Row 4 -->
+        <div class="row center-align">
+            <div class="form-container">
+                <h2>Sign In</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username"><br>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br><br>
+                    <input id="submitButton" type="submit" value="Sign In">
+                </form>
+            </div>
+        </div>
+        <div><h1></h1></div>
+        <!-- Row 5 -->
+        <footer class="row footer1">
+            <p>Copyright &copy; 2024 AQI Prediction. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

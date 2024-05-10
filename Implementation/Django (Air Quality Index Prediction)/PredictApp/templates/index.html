@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'PredictApp/style.css' %}">
+    <title>AQI Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Row 1 -->
+        <div>
+            <header class="row header1">
+                <div class="left-align">
+                    <img class="banner" src="{% static 'PredictApp/images/banner.png' %}" alt="Image Placeholder">
+                </div>
+                <div class="right-align">
+                    <a id="signinButton" href="{% url 'signin' %}">Sign In</a>
+                </div>
+            </header>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row center-align">
+            <form method="post">
+                {% csrf_token %}
+                <label for="dateRange">Select Date Range:</label>
+                <input type="date" id="fromDate" name="fromDate">
+                <input type="date" id="toDate" name="toDate">
+                <input id="predictButton" type="submit" value="Predict">
+            </form>
+            {% if predictions %}
+                <button id="reportButton">Download PDF</button>
+            {% endif %}
+        </div>
+        <div><h1></h1></div>
+        <!-- Row 4 -->
+        {% if predictions %}
+            <div class="table-container">
+                <table class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>PM 2.5</th>
+                            <th>PM 10</th>
+                            <th>SO2</th>
+                            <th>NO2</th>
+                            <th>CO</th>
+                            <th>O3</th>
+                            <th>AQI Prediction</th>
+                            <th>AQI Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prediction in predictions %}
+                        <tr>
+                            <td>{{ prediction.Date }}</td>
+                            <td>{{ prediction.PM2point5 }}</td>
+                            <td>{{ prediction.PM10 }}</td>
+                            <td>{{ prediction.SO2 }}</td>
+                            <td>{{ prediction.NO2 }}</td>
+                            <td>{{ prediction.CO }}</td>
+                            <td>{{ prediction.O3 }}</td>
+                            <td class="{% if prediction.AQI == 'Good' %}good{% elif prediction.AQI == 'Satisfactory' %}satisfactory{% elif prediction.AQI == 'Moderate' %}moderate{% elif prediction.AQI == 'Poor' %}poor{% elif prediction.AQI == 'Very Poor' %}very-poor{% else %}severe{% endif %}">
+                                {{ prediction.AQI }}
+                            </td>
+                            <td class="img">
+                                {% if prediction.AQI == 'Good' %}
+                                    <img class="img" src="{{ aqi_images.Good }}" alt="Good AQI Image">
+                                {% elif prediction.AQI == 'Satisfactory' %}
+                                    <img class="img" src="{{ aqi_images.Satisfactory }}" alt="Satisfactory AQI Image">
+                                {% elif prediction.AQI == 'Moderate' %}
+                                    <img class="img" src="{{ aqi_images.Moderate }}" alt="Moderate AQI Image">
+                                {% elif prediction.AQI == 'Poor' %}
+                                    <img class="img" src="{{ aqi_images.Poor }}" alt="Poor AQI Image">
+                                {% elif prediction.AQI == 'Very Poor' %}
+                                    <img class="img" src="{{ aqi_images.VeryPoor }}" alt="Very Poor AQI Image">
+                                {% else %}
+                                    <img class="img" src="{{ aqi_images.Severe }}" alt="Severe AQI Image">
+                                {% endif %}
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div><h1></h1></div>
+            <div class="table-container">
+                <img class="aqiimg" src="{% static 'PredictApp/images/aqirange-1.jpg' %}" alt="Image Placeholder">   
+            </div>
+            <div><h1></h1></div>
+        {% endif %}
+        <!-- Row 5 -->
+        <footer class="row footer1">
+            <p>Copyright &copy; 2024 AQI Prediction. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("reportButton").addEventListener("click", function() {
+            var fromDate = document.getElementById("fromDate").value;
+            var toDate = document.getElementById("toDate").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{% url 'generate_pdf' %}?fromDate=" + fromDate + "&toDate=" + toDate, true);
+            xhr.setRequestHeader('Content-Type', 'application/pdf');
+            xhr.responseType = 'blob';
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var blob = new Blob([this.response], {type: 'application/pdf'});
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'AQIPrediction.pdf';
+                    link.click();
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
